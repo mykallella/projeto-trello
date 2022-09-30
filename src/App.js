@@ -3,6 +3,8 @@ import { useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Droppable } from "react-beautiful-dnd";
 import { Draggable } from "react-beautiful-dnd";
+import { Container, List } from "@mui/material";
+
 
 const inicialItems = [
   { id: "1", content: "Conteúdo 1" },
@@ -94,22 +96,22 @@ function App() {
   }
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", justifyContent: "center" }}>    
 
       <DragDropContext onDragEnd={onDragEnd}>
 
         {columns.map((column) => (  // Para cada coluna do 'columns', renderiza...        
-          <div style={{ display: "flex", flexDirection:"column", alignItems:"center" }}>
+          <div style={{ display: "flex", flexDirection:"column", alignItems:"center",  }}>
 
             {/* Nome da coluna */}
-            <h1>{column.name}</h1>
+            <h1 style={{ fontWeight: 200 }}>{column.name}</h1>
 
             {/* Possibilita mudar itens dentro da coluna */}
             <Droppable droppableId={column.id} key={column.id}>
               {(provided) => (
                 <div
                   ref={provided.innerRef}
-                  style={{ backgroundColor: "lightblue", width: 250, height: 500, padding: 10, margin: 10 }}
+                  style={{ backgroundColor: "#c598ecd9", width: 250, height: 500, padding: 10, margin: 10, borderRadius: 8 }}
                 >
                   {column.items.map((item, index) => ( // Para cada item do 'inicialItems', renderiza...
 
@@ -121,9 +123,14 @@ function App() {
                           {...provided.draggableProps}
                           ref={provided.innerRef}
                           style={{
-                            backgroundColor: "gray",
-                            height: 40,
+                            backgroundColor: "#8d48c95d",
+                            height: 40,                            
                             marginBottom: 10,
+                            borderRadius: 8,                            
+                            paddingTop: 8,                            
+                            textAlign: "center",
+                            alignItems: "center",
+                            color: "#d4d4d4",                           
                             ...provided.draggableProps.style,
                           }}
                         >
@@ -144,7 +151,7 @@ function App() {
         ))}
 
       </DragDropContext>
-      
+            
     </div>
   );
 }
